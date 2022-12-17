@@ -7,8 +7,13 @@ public class CreateAdventureServiceTests
     {
         //Arrange
         var mockValidateService = new Mock<IValidateService>();
+        var mockEnrichmentService = new Mock<IEnrichmentService>();
+        var mockPersistAdventureService = new Mock<IPersistAdventureService>();
 
-        var createAdventureService = new CreateAdventureService(mockValidateService.Object);
+        var createAdventureService = new CreateAdventureService(mockValidateService.Object,
+                                                                mockEnrichmentService.Object,
+                                                                mockPersistAdventureService.Object);
+
 
         var request = LobsterAdventureFixtures.GetAdventure();
 
@@ -25,8 +30,13 @@ public class CreateAdventureServiceTests
     {
         //Arrange
         var mockValidateService = new Mock<IValidateService>();
+        var mockEnrichmentService = new Mock<IEnrichmentService>();
+        var mockPersistAdventureService = new Mock<IPersistAdventureService>();
 
-        var createAdventureService = new CreateAdventureService(mockValidateService.Object);
+        var createAdventureService = new CreateAdventureService(mockValidateService.Object,
+                                                                mockEnrichmentService.Object,
+                                                                mockPersistAdventureService.Object);
+
 
         var request = LobsterAdventureFixtures.GetAdventure();
 
@@ -39,12 +49,60 @@ public class CreateAdventureServiceTests
     }
 
     [Fact()]
+    public void Create_OnSuccess_InvokesEnrichmentServiceExactlyOnce()
+    {
+        //Arrange
+        var mockValidateService = new Mock<IValidateService>();
+        var mockEnrichmentService = new Mock<IEnrichmentService>();
+        var mockPersistAdventureService = new Mock<IPersistAdventureService>();
+
+        var createAdventureService = new CreateAdventureService(mockValidateService.Object,
+                                                                mockEnrichmentService.Object,
+                                                                mockPersistAdventureService.Object);
+
+        var request = LobsterAdventureFixtures.GetAdventure();
+
+        //Act
+
+        var result = createAdventureService.Create(request);
+
+        //Assert
+        mockEnrichmentService.Verify(service => service.Enrich(request), Times.Once());
+    }
+
+    [Fact()]
+    public void Create_OnSuccess_InvokesPersistServiceExactlyOnce()
+    {
+        //Arrange
+        var mockValidateService = new Mock<IValidateService>();
+        var mockEnrichmentService = new Mock<IEnrichmentService>();
+        var mockPersistAdventureService = new Mock<IPersistAdventureService>();
+
+        var createAdventureService = new CreateAdventureService(mockValidateService.Object,
+                                                                mockEnrichmentService.Object,
+                                                                mockPersistAdventureService.Object);
+
+        var request = LobsterAdventureFixtures.GetAdventure();
+
+        //Act
+
+        var result = createAdventureService.Create(request);
+
+        //Assert
+        mockPersistAdventureService.Verify(service => service.Persist(request), Times.Once());
+    }
+
+    [Fact()]
     public void Create_OnValidationFailure_ReturnsFailureReason()
     {
         //Arrange
         var mockValidateService = new Mock<IValidateService>();
+        var mockEnrichmentService = new Mock<IEnrichmentService>();
+        var mockPersistAdventureService = new Mock<IPersistAdventureService>();
 
-        var createAdventureService = new CreateAdventureService(mockValidateService.Object);
+        var createAdventureService = new CreateAdventureService(mockValidateService.Object,
+                                                                mockEnrichmentService.Object,
+                                                                mockPersistAdventureService.Object);
 
         var request = LobsterAdventureFixtures.GetAdventure();
 
