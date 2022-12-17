@@ -21,11 +21,14 @@ public class AdventureController : ControllerBase
         {
             _logger.LogInformation($"Received request {adventure.Id} - {JsonSerializer.Serialize(adventure)}");
 
-            var isSuccessful = _createAdventureService.Create(adventure);
+            var failureReason = _createAdventureService.Create(adventure);
 
-            _logger.LogInformation($"Processed request {adventure.Id}");
+            if (!string.IsNullOrEmpty(failureReason))
+            {
+                return Problem($"Failed to create adventure - {failureReason}");
+            }
 
-            return Ok(isSuccessful);
+            return Ok();
         }
         catch (Exception ex)
         {

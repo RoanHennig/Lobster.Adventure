@@ -15,7 +15,7 @@ public class AdventureControllerTests
 
         //Act
 
-        var result = (OkObjectResult)await controller.Post(request);
+        var result = (OkResult)await controller.Post(request);
 
         //Assert
         result.StatusCode.Should().Be(200);
@@ -34,14 +34,14 @@ public class AdventureControllerTests
         var request = LobsterAdventureFixtures.GetAdventure();
 
         //Act
-        var result = (OkObjectResult)await controller.Post(request);
+        var result = (OkResult)await controller.Post(request);
 
         //Assert
         mockCreateAdventureService.Verify(service => service.Create(request), Times.Once());
     }
 
     [Fact()]
-    public async Task Post_OnSuccess_ReturnsTrue()
+    public async Task Post_OnFailure_ReturnsStatusCode500()
     {
         //Arrange
         var mockLogger = new Mock<ILogger<AdventureController>>();
@@ -51,16 +51,14 @@ public class AdventureControllerTests
 
         var request = LobsterAdventureFixtures.GetAdventure();
 
-        mockCreateAdventureService.Setup(service => service.Create(request)).Returns(true);
+        mockCreateAdventureService.Setup(service => service.Create(request)).Returns("dummyFailure");
 
         //Act
-        var result = await controller.Post(request);
+
+        var result = (ObjectResult)await controller.Post(request);
 
         //Assert
-        result.Should().BeOfType<OkObjectResult>();
-        var okResult = (OkObjectResult)result;
-        okResult.Value.Should().BeOfType<bool>();
-        ((bool)okResult.Value).Should().BeTrue();
+        result.StatusCode.Should().Be(500);
     }
 
     [Fact()]

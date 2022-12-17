@@ -2,5 +2,5 @@
 
 public interface ICreateAdventureService
 {
-    bool Create(LobsterAdventure adventure);
+    string Create(LobsterAdventure adventure);
 }
