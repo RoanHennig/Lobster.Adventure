@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lobster.Adventure.DataAccess\Lobster.Adventure.DataAccess.csproj" />
+    <Folder Include="Keys\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>

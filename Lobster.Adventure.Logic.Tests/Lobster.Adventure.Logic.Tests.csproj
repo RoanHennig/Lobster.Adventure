@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Lobster.Adventure.Logic\Lobster.Adventure.Logic.csproj" />
     <ProjectReference Include="..\Lobster.Adventure\Lobster.Adventure.csproj" />
   </ItemGroup>
 
