@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lobster.Adventure", "Lobster.Adventure\Lobster.Adventure.csproj", "{115FF241-C4CA-4E42-A410-47D95E24738C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lobster.Adventure", "Lobster.Adventure\Lobster.Adventure.csproj", "{115FF241-C4CA-4E42-A410-47D95E24738C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lobster.Adventure.Logic", "Lobster.Adventure.Logic\Lobster.Adventure.Logic.csproj", "{EBD9F754-1CC3-4A91-9C8D-87B1C4790985}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lobster.Adventure.Tests", "Lobster.Adventure.Tests\Lobster.Adventure.Tests.csproj", "{3D52858E-87FD-4A16-A1B9-4CCAE7838F34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{115FF241-C4CA-4E42-A410-47D95E24738C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{115FF241-C4CA-4E42-A410-47D95E24738C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{115FF241-C4CA-4E42-A410-47D95E24738C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD9F754-1CC3-4A91-9C8D-87B1C4790985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD9F754-1CC3-4A91-9C8D-87B1C4790985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD9F754-1CC3-4A91-9C8D-87B1C4790985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD9F754-1CC3-4A91-9C8D-87B1C4790985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D52858E-87FD-4A16-A1B9-4CCAE7838F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D52858E-87FD-4A16-A1B9-4CCAE7838F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D52858E-87FD-4A16-A1B9-4CCAE7838F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D52858E-87FD-4A16-A1B9-4CCAE7838F34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
