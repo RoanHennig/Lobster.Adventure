@@ -1,4 +1,4 @@
-﻿namespace Lobster.Adventure.Tests.Fixtures;
+﻿namespace Lobster.Adventure.Logic.Tests.Fixtures;
 
 public static class LobsterAdventureFixtures
 {

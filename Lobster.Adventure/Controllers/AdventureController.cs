@@ -19,7 +19,7 @@ public class AdventureController : ControllerBase
     {
         try
         {
-            _logger.LogInformation($"Received request {adventure.Id} - {JsonSerializer.Serialize(adventure)}");
+            _logger.LogInformation($"Received request {adventure.UserId} - {JsonSerializer.Serialize(adventure)}");
 
             var failureReason = _createAdventureService.Create(adventure);
 
