@@ -9,6 +9,13 @@ public static class LobsterAdventureFixtures
             UserId = "123",
             Name = "dummyName",
             AdventureChoice = new Choice()
+            {
+                Choices = new List<Choice>()
+                {
+                    new Choice(),
+                    new Choice()
+                }
+            }
         };
     }
 
