@@ -1,4 +1,4 @@
-﻿namespace Lobster.Adventure.Logic.Services;
+﻿namespace Lobster.Adventure.Logic.Services.Create;
 
 public class CreateAdventureService : ICreateAdventureService
 {
@@ -16,7 +16,7 @@ public class CreateAdventureService : ICreateAdventureService
     {
         var validationFailure = _validateService.Validate(adventure);
 
-        if(!string.IsNullOrEmpty(validationFailure))
+        if (!string.IsNullOrEmpty(validationFailure))
         {
             return validationFailure;
         }

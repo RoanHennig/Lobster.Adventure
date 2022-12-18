@@ -15,7 +15,7 @@ public class AdventureController : ControllerBase
     }
 
     [HttpPost(Name = "CreateAdventure")]
-    public async Task<IActionResult> Post(LobsterAdventure adventure)
+    public async Task<IActionResult> Create(LobsterAdventure adventure)
     {
         try
         {

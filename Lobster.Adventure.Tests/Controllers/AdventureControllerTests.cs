@@ -15,7 +15,7 @@ public class AdventureControllerTests
 
         //Act
 
-        var result = (OkResult)await controller.Post(request);
+        var result = (OkResult)await controller.Create(request);
 
         //Assert
         result.StatusCode.Should().Be(200);
@@ -34,7 +34,7 @@ public class AdventureControllerTests
         var request = LobsterAdventureFixtures.GetAdventure();
 
         //Act
-        var result = (OkResult)await controller.Post(request);
+        var result = (OkResult)await controller.Create(request);
 
         //Assert
         mockCreateAdventureService.Verify(service => service.Create(request), Times.Once());
@@ -55,10 +55,33 @@ public class AdventureControllerTests
 
         //Act
 
-        var result = (ObjectResult)await controller.Post(request);
+        var result = (ObjectResult)await controller.Create(request);
 
         //Assert
         result.StatusCode.Should().Be(500);
+    }
+
+    [Fact()]
+    public async Task Post_OnFailure_ReturnsFailureReason()
+    {
+        //Arrange
+        var mockLogger = new Mock<ILogger<AdventureController>>();
+        var mockCreateAdventureService = new Mock<ICreateAdventureService>();
+
+        var controller = new AdventureController(mockLogger.Object, mockCreateAdventureService.Object);
+
+        var request = LobsterAdventureFixtures.GetAdventure();
+
+        mockCreateAdventureService.Setup(service => service.Create(request)).Returns("dummyFailure");
+
+        //Act
+
+        var result = (ObjectResult)await controller.Create(request);
+
+        //Assert
+        result.Value.Should().BeOfType<ProblemDetails>();
+        var problem = (ProblemDetails)result.Value;
+        problem.Detail.Should().Be($"Failed to create adventure - dummyFailure");
     }
 
     [Fact()]
@@ -76,7 +99,7 @@ public class AdventureControllerTests
 
         //Act
 
-        var result = (ObjectResult)await controller.Post(request);
+        var result = (ObjectResult)await controller.Create(request);
 
         //Assert
         result.StatusCode.Should().Be(500);

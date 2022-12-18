@@ -1,4 +1,4 @@
-﻿namespace Lobster.Adventure.Logic.Tests.Services;
+﻿namespace Lobster.Adventure.Logic.Tests.Services.Create;
 
 public class CreateAdventureServiceTests
 {
@@ -14,7 +14,7 @@ public class CreateAdventureServiceTests
 
 
         var request = LobsterAdventureFixtures.GetAdventure();
-        mockPersistAdventureService.Setup(service => service.Persist(request)).Returns(String.Empty);
+        mockPersistAdventureService.Setup(service => service.Persist(request)).Returns(string.Empty);
 
         //Act
 

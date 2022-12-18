@@ -7,3 +7,4 @@ global using Lobster.Adventure.DataAccess.Entities;
 global using Lobster.Adventure.Logic.Interfaces.Mapping;
 global using System.Text.Json;
 global using Lobster.Adventure.DataAccess.Exceptions;
+global using Lobster.Adventure.Logic.Interfaces.Services.Save;
