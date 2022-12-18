@@ -18,4 +18,8 @@ global using System.ComponentModel.DataAnnotations;
 global using Lobster.Adventure.Logic.Tests.Helpers;
 global using Lobster.Adventure.DataAccess.Exceptions;
 global using Lobster.Adventure.Logic.Services.Save;
+global using Lobster.Adventure.Logic.Interfaces.Services.Get;
+global using Lobster.Adventure.DataAccess.Keys;
+global using Lobster.Adventure.Logic.Services.Create;
+global using Lobster.Adventure.Logic.Services.Read;
 

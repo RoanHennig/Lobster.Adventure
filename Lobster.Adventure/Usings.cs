@@ -4,3 +4,4 @@ global using System.Text.Json;
 global using Lobster.Adventure.Logic.Interfaces.Services;
 global using Lobster.Adventure.Logic.Interfaces.Services.Create;
 global using Lobster.Adventure.Logic.Interfaces.Services.Save;
+global using Lobster.Adventure.Logic.Interfaces.Services.Read;

@@ -8,8 +8,6 @@ public class LobsterAdventure
     [Required]
     public string Name { get; init; }
 
-    public DateTime AdventureCreationDate { get; set; }
-
     [Required]
     public Choice AdventureChoice { get; init; }
 }

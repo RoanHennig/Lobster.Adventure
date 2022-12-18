@@ -8,8 +8,11 @@ public class AdventureControllerTests
         //Arrange
         var mockLogger = new Mock<ILogger<AdventureController>>();
         var mockCreateAdventureService = new Mock<ICreateAdventureService>();
-
-        var controller = new AdventureController(mockLogger.Object, mockCreateAdventureService.Object);
+        var mockReadAdventureService = new Mock<IGetAdventureService>();
+    
+        var controller = new AdventureController(mockLogger.Object,
+                                                 mockCreateAdventureService.Object,
+                                                 mockReadAdventureService.Object);
 
         var request = LobsterAdventureFixtures.GetAdventure();
 
@@ -28,8 +31,12 @@ public class AdventureControllerTests
         //Arrange
         var mockLogger = new Mock<ILogger<AdventureController>>();
         var mockCreateAdventureService = new Mock<ICreateAdventureService>();
+        var mockReadAdventureService = new Mock<IGetAdventureService>();
 
-        var controller = new AdventureController(mockLogger.Object, mockCreateAdventureService.Object);
+        var controller = new AdventureController(mockLogger.Object,
+                                                 mockCreateAdventureService.Object,
+                                                 mockReadAdventureService.Object);
+
 
         var request = LobsterAdventureFixtures.GetAdventure();
 
@@ -46,8 +53,12 @@ public class AdventureControllerTests
         //Arrange
         var mockLogger = new Mock<ILogger<AdventureController>>();
         var mockCreateAdventureService = new Mock<ICreateAdventureService>();
+        var mockReadAdventureService = new Mock<IGetAdventureService>();
 
-        var controller = new AdventureController(mockLogger.Object, mockCreateAdventureService.Object);
+        var controller = new AdventureController(mockLogger.Object,
+                                                 mockCreateAdventureService.Object,
+                                                 mockReadAdventureService.Object);
+
 
         var request = LobsterAdventureFixtures.GetAdventure();
 
@@ -67,8 +78,12 @@ public class AdventureControllerTests
         //Arrange
         var mockLogger = new Mock<ILogger<AdventureController>>();
         var mockCreateAdventureService = new Mock<ICreateAdventureService>();
+        var mockReadAdventureService = new Mock<IGetAdventureService>();
 
-        var controller = new AdventureController(mockLogger.Object, mockCreateAdventureService.Object);
+        var controller = new AdventureController(mockLogger.Object,
+                                                 mockCreateAdventureService.Object,
+                                                 mockReadAdventureService.Object);
+
 
         var request = LobsterAdventureFixtures.GetAdventure();
 
@@ -90,8 +105,11 @@ public class AdventureControllerTests
         //Arrange
         var mockLogger = new Mock<ILogger<AdventureController>>();
         var mockCreateAdventureService = new Mock<ICreateAdventureService>();
+        var mockReadAdventureService = new Mock<IGetAdventureService>();
 
-        var controller = new AdventureController(mockLogger.Object, mockCreateAdventureService.Object);
+        var controller = new AdventureController(mockLogger.Object,
+                                                 mockCreateAdventureService.Object,
+                                                 mockReadAdventureService.Object);
 
         var request = LobsterAdventureFixtures.GetAdventure();
 
@@ -100,6 +118,76 @@ public class AdventureControllerTests
         //Act
 
         var result = (ObjectResult)await controller.Create(request);
+
+        //Assert
+        result.StatusCode.Should().Be(500);
+    }
+
+    [Fact()]
+    public async Task Get_OnSuccess_ReturnsStatusCode200()
+    {
+        //Arrange
+        var mockLogger = new Mock<ILogger<AdventureController>>();
+        var mockCreateAdventureService = new Mock<ICreateAdventureService>();
+        var mockReadAdventureService = new Mock<IGetAdventureService>();
+
+        var controller = new AdventureController(mockLogger.Object,
+                                                 mockCreateAdventureService.Object,
+                                                 mockReadAdventureService.Object);
+
+        var request = LobsterAdventureFixtures.GetAdventure();
+
+        //Act
+
+        var result = (OkObjectResult)await controller.Get(request.UserId, request.Name);
+
+        //Assert
+        result.StatusCode.Should().Be(200);
+    }
+
+    [Fact()]
+    public async Task Get_OnSuccess_ReturnsAdventure()
+    {
+        //Arrange
+        var mockLogger = new Mock<ILogger<AdventureController>>();
+        var mockCreateAdventureService = new Mock<ICreateAdventureService>();
+        var mockReadAdventureService = new Mock<IGetAdventureService>();
+
+        var controller = new AdventureController(mockLogger.Object,
+                                                 mockCreateAdventureService.Object,
+                                                 mockReadAdventureService.Object);
+
+        var request = LobsterAdventureFixtures.GetAdventure();
+
+        mockReadAdventureService.Setup(service => service.Get(request.UserId, request.Name)).Returns(request);
+
+        //Act
+
+        var result = (OkObjectResult)await controller.Get(request.UserId, request.Name);
+
+        //Assert
+        result.Value.Should().BeOfType<LobsterAdventure>();
+    }
+
+    [Fact()]
+    public async Task Get_OnTechnicalFailure_ReturnsStatusCode500()
+    {
+        //Arrange
+        var mockLogger = new Mock<ILogger<AdventureController>>();
+        var mockCreateAdventureService = new Mock<ICreateAdventureService>();
+        var mockReadAdventureService = new Mock<IGetAdventureService>();
+
+        var controller = new AdventureController(mockLogger.Object,
+                                                 mockCreateAdventureService.Object,
+                                                 mockReadAdventureService.Object);
+
+        var request = LobsterAdventureFixtures.GetAdventure();
+
+        mockReadAdventureService.Setup(service => service.Get(request.UserId, request.Name)).Throws(new Exception());
+
+        //Act
+
+        var result = (ObjectResult)await controller.Get(request.UserId, request.Name);
 
         //Assert
         result.StatusCode.Should().Be(500);

@@ -11,4 +11,14 @@ public class MapLobsterAdventure : IMapLobsterAdventure
             AdventureChoice = JsonSerializer.Serialize(adventure.AdventureChoice)
         };
     }
+
+    public LobsterAdventure Map(LobsterAdventureEntity adventureEntity)
+    {
+        return new LobsterAdventure()
+        {
+            UserId = adventureEntity.UserId,
+            Name = adventureEntity.Name,
+            AdventureChoice = JsonSerializer.Deserialize<Choice>(adventureEntity.AdventureChoice)
+        };
+    }
 }

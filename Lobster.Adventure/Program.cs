@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging();
 
-builder.Services.AddScoped<ISaveAdventureResultsService, SaveAdventureResultsService>();
+//builder.Services.AddScoped<ISaveAdventureResultsService, SaveAdventureResultsService>();
 
 
 var app = builder.Build();

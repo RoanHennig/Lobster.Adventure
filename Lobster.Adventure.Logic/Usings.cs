@@ -9,3 +9,6 @@ global using System.Text.Json;
 global using Lobster.Adventure.DataAccess.Exceptions;
 global using Lobster.Adventure.Logic.Interfaces.Services.Save;
 global using System.ComponentModel.DataAnnotations;
+global using Lobster.Adventure.Logic.Interfaces.Services.Read;
+global using Lobster.Adventure.Logic.Interfaces.Services.Get;
+global using Lobster.Adventure.DataAccess.Keys;

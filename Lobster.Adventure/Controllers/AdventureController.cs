@@ -6,12 +6,15 @@ public class AdventureController : ControllerBase
 {
     private readonly ILogger<AdventureController> _logger;
     private readonly ICreateAdventureService _createAdventureService;
+    private readonly IGetAdventureService _getAdventureService;
 
     public AdventureController(ILogger<AdventureController> logger,
-                               ICreateAdventureService createAdventureService)
+                               ICreateAdventureService createAdventureService,
+                               IGetAdventureService readAdventureService)
     {
         _logger = logger;
         _createAdventureService = createAdventureService;
+        _getAdventureService = readAdventureService;
     }
 
     [HttpPost(Name = "CreateAdventure")]
@@ -19,7 +22,7 @@ public class AdventureController : ControllerBase
     {
         try
         {
-            _logger.LogInformation($"Received request {adventure.UserId} - {JsonSerializer.Serialize(adventure)}");
+            _logger.LogInformation($"Received post request {adventure.UserId} - {JsonSerializer.Serialize(adventure)}");
 
             var failureReason = _createAdventureService.Create(adventure);
 
@@ -33,6 +36,23 @@ public class AdventureController : ControllerBase
         catch (Exception ex)
         {
             return Problem(ex.Message);
+        }
+    }
+
+    [HttpGet(Name = "CreateAdventure")]
+    public async Task<IActionResult> Get(string userId, string adventureName)
+    {
+        try
+        {
+            _logger.LogInformation($"Received get request {userId} - {adventureName}");
+
+            var adventure = _getAdventureService.Get(userId, adventureName);
+
+            return Ok(adventure);
+        }
+        catch (Exception ex)
+        {
+            return Problem($"Could not retrieve adventure - {ex.Message}");
         }
     }
 }
