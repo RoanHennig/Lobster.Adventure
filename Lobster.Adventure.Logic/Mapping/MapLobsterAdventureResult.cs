@@ -12,4 +12,15 @@ public class MapLobsterAdventureResult : IMapLobsterAdventureResult
             AdventureTakenDate = adventureResult.AdventureTakenDate.ToString()
         };
     }
+
+    public LobsterAdventureResult Map(LobsterAdventureResultEntity adventureResultEntity)
+    {
+        return new LobsterAdventureResult()
+        {
+            AdventureName = adventureResultEntity.AdventureName,
+            ChoiceResults = JsonSerializer.Deserialize<List<ChoiceResult>>(adventureResultEntity.ChoiceResults),
+            UserId = adventureResultEntity.UserId,
+            AdventureTakenDate = DateTime.Parse(adventureResultEntity.AdventureTakenDate)
+        };
+    }
 }

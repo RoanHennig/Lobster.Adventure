@@ -29,6 +29,7 @@ public class CreateLobsterAdventureKeyServiceTests
         var result = createLobsterAdventureKeyService.Create(request.UserId, request.Name);
 
         //Assert
+        result.Should().NotBeNull();
         result.UserId.Should().Be(request.UserId);
         result.Name.Should().Be(request.Name);
     }

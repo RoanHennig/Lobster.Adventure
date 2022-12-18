@@ -3,4 +3,6 @@
 public interface IMapLobsterAdventureResult
 {
     LobsterAdventureResultEntity Map(LobsterAdventureResult adventureResult);
+
+    LobsterAdventureResult Map(LobsterAdventureResultEntity adventureResultEntity);
 }
