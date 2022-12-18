@@ -45,6 +45,28 @@ public class PersistAdventureServiceTests
     }
 
     [Fact()]
+    public void Persist_OnAdventureExistsException_ReturnsValidationFailure()
+    {
+        //Arrange
+        var mockMapLobsterAdventure = new Mock<IMapLobsterAdventure>();
+        var mockAdventureRespository = new Mock<IAdventureRespository>();
+
+        var persistAdventureService = new PersistAdventureService(mockAdventureRespository.Object,
+                                                                  mockMapLobsterAdventure.Object);
+
+
+        var request = LobsterAdventureFixtures.GetAdventure();
+        mockAdventureRespository.Setup(service => service.Create(It.IsAny<LobsterAdventureEntity>())).Throws(new AdventureExistsException());
+
+        //Act
+
+        var result = persistAdventureService.Persist(request);
+
+        //Assert
+        result.Should().Be(AdventureFailureMessages.AdventureAlreadyExists);
+    }
+
+    [Fact()]
     public void Persist_OnSuccess_InvokesRepositoryExactlyOnce()
     {
         //Arrange

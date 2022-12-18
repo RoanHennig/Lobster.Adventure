@@ -20,7 +20,7 @@ public class PersistAdventureService : IPersistAdventureService
         {
             _adventureRespository.Create(entity);
 
-            return String.Empty;
+            return string.Empty;
         }
         catch (AdventureExistsException)
         {

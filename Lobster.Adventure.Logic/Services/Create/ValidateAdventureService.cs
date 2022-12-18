@@ -33,6 +33,6 @@ public class ValidateAdventureService : IValidateAdventureService
                 return ValidateChoices(childChoice);
         }
 
-        return String.Empty;
+        return string.Empty;
     }
 }

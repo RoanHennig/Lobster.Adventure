@@ -25,6 +25,6 @@ public class ValidateAdventureResultsService : IValidateAdventureResultsService
                 return AdventureResultFailureMessages.NullOrEmptyChoiceId;
         }
 
-        return String.Empty;
+        return string.Empty;
     }
 }

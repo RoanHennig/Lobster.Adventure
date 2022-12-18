@@ -14,7 +14,6 @@ public class SaveAdventureResultsServiceTests
 
 
         var request = LobsterAdventureResultsFixtures.GetAdventureResult();
-        mockPersistAdventureResultsService.Setup(service => service.Persist(request)).Returns(string.Empty);
 
         //Act
 

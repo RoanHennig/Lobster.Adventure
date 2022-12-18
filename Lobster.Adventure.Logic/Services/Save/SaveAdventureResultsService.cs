@@ -21,6 +21,8 @@ public class SaveAdventureResultsService : ISaveAdventureResultsService
             return validationFailure;
         }
 
-        return _persistAdventureResultsService.Persist(adventureResult);
+        _persistAdventureResultsService.Persist(adventureResult);
+
+        return string.Empty;
     }
 }

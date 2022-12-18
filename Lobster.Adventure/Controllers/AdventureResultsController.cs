@@ -19,7 +19,8 @@ public class AdventureResultsController : ControllerBase
     {
         try
         {
-            _logger.LogInformation($"Received request {adventureResult.UserId} {adventureResult.AdventureName} - {JsonSerializer.Serialize(adventureResult)}");
+            _logger.LogInformation(
+                $"Received request {adventureResult.UserId} {adventureResult.AdventureName} - {JsonSerializer.Serialize(adventureResult)}");
 
             var failureReason = _saveAdventureResultsService.Save(adventureResult);
 

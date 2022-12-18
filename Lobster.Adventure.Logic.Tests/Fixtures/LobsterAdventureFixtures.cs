@@ -41,6 +41,18 @@ public static class LobsterAdventureFixtures
             UserId = "123",
             Name = "",
             AdventureChoice = new Choice()
+            {
+                Id = "dummyId1",
+                Prompt = "dummyPrompt1",
+                Choices = new List<Choice>()
+                {
+                    new Choice()
+                    {
+                        Id = "dummyId2",
+                        Prompt = "dummyPrompt2",
+                    }
+                }
+            }
         };
     }
 
@@ -51,6 +63,18 @@ public static class LobsterAdventureFixtures
             UserId = "",
             Name = "123",
             AdventureChoice = new Choice()
+            {
+                Id = "dummyId1",
+                Prompt = "dummyPrompt1",
+                Choices = new List<Choice>()
+                {
+                    new Choice()
+                    {
+                        Id = "dummyId2",
+                        Prompt = "dummyPrompt2",
+                    }
+                }
+            }
         };
     }
 
