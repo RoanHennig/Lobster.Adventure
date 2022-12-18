@@ -8,6 +8,7 @@ public static class LobsterAdventureResultsFixtures
         {
             UserId = "dummyUserId",
             AdventureName = "dummyName",
+            AdventureTakenDate = DateTime.Now,
             ChoiceResults = new List<ChoiceResult>()
             {
                 new ChoiceResult()
