@@ -2,10 +2,10 @@
 
 public class CreateAdventureService : ICreateAdventureService
 {
-    private readonly IValidateService _validateService;
+    private readonly IValidateAdventureService _validateService;
     private readonly IPersistAdventureService _persistAdventureService;
 
-    public CreateAdventureService(IValidateService validateService,
+    public CreateAdventureService(IValidateAdventureService validateService,
                                   IPersistAdventureService persistAdventureService)
     {
         _validateService = validateService;
@@ -21,8 +21,6 @@ public class CreateAdventureService : ICreateAdventureService
             return validationFailure;
         }
 
-        _persistAdventureService.Persist(adventure);
-
-        return String.Empty;
+        return _persistAdventureService.Persist(adventure);
     }
 }

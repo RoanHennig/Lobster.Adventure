@@ -3,6 +3,27 @@
 public class PersistAdventureServiceTests
 {
     [Fact()]
+    public void Persist_OnSuccess_ReturnsEmptyString()
+    {
+        //Arrange
+        var mockMapLobsterAdventure = new Mock<IMapLobsterAdventure>();
+        var mockAdventureRespository = new Mock<IAdventureRespository>();
+
+        var persistAdventureService = new PersistAdventureService(mockAdventureRespository.Object,
+                                                                  mockMapLobsterAdventure.Object);
+
+
+        var request = LobsterAdventureFixtures.GetAdventure();
+
+        //Act
+
+        var result = persistAdventureService.Persist(request);
+
+        //Assert
+        result.Should().BeEmpty();
+    }
+
+    [Fact()]
     public void Persist_OnSuccess_InvokesMapperExactlyOnce()
     {
         //Arrange

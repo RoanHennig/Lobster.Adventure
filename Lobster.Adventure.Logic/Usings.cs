@@ -6,3 +6,4 @@ global using Lobster.Adventure.DataAccess.Interfaces.Repositories;
 global using Lobster.Adventure.DataAccess.Entities;
 global using Lobster.Adventure.Logic.Interfaces.Mapping;
 global using System.Text.Json;
+global using Lobster.Adventure.DataAccess.Exceptions;

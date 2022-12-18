@@ -10,10 +10,20 @@ public static class LobsterAdventureFixtures
             Name = "dummyName",
             AdventureChoice = new Choice()
             {
+                Id = "dummyId1",
+                Prompt = "dummyPrompt1",
                 Choices = new List<Choice>()
                 {
-                    new Choice(),
                     new Choice()
+                    {
+                        Id = "dummyId2",
+                        Prompt = "dummyPrompt2",
+                    },
+                    new Choice()
+                    {
+                        Id = "dummyId3",
+                        Prompt = "dummyPrompt3",
+                    }
                 }
             }
         };
@@ -40,6 +50,32 @@ public static class LobsterAdventureFixtures
         {
             UserId = "123",
             Name = "dummy"
+        };
+    }
+
+    public static LobsterAdventure GetNullOrEmptyChoiceIdAdventure()
+    {
+        return new LobsterAdventure()
+        {
+            UserId = "123",
+            Name = "dummyName",
+            AdventureChoice = new Choice()
+            {
+                Prompt = "dummyPrompt1"
+            }
+        };
+    }
+
+    public static LobsterAdventure GetNullOrEmptyChoicePromptAdventure()
+    {
+        return new LobsterAdventure()
+        {
+            UserId = "123",
+            Name = "dummyName",
+            AdventureChoice = new Choice()
+            {
+                Id = "dummyChoice"
+            }
         };
     }
 }

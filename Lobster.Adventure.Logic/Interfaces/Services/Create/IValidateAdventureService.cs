@@ -1,6 +1,6 @@
 ﻿namespace Lobster.Adventure.Logic.Interfaces.Services.Create;
 
-public interface IValidateService
+public interface IValidateAdventureService
 {
     string Validate(LobsterAdventure adventure);
 }

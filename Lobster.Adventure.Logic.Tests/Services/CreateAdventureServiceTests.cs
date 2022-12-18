@@ -6,7 +6,7 @@ public class CreateAdventureServiceTests
     public void Create_OnSuccess_ReturnsEmptyString()
     {
         //Arrange
-        var mockValidateService = new Mock<IValidateService>();
+        var mockValidateService = new Mock<IValidateAdventureService>();
         var mockPersistAdventureService = new Mock<IPersistAdventureService>();
 
         var createAdventureService = new CreateAdventureService(mockValidateService.Object,
@@ -14,6 +14,7 @@ public class CreateAdventureServiceTests
 
 
         var request = LobsterAdventureFixtures.GetAdventure();
+        mockPersistAdventureService.Setup(service => service.Persist(request)).Returns(String.Empty);
 
         //Act
 
@@ -27,7 +28,7 @@ public class CreateAdventureServiceTests
     public void Create_OnSuccess_InvokesValidateServiceExactlyOnce()
     {
         //Arrange
-        var mockValidateService = new Mock<IValidateService>();
+        var mockValidateService = new Mock<IValidateAdventureService>();
         var mockPersistAdventureService = new Mock<IPersistAdventureService>();
 
         var createAdventureService = new CreateAdventureService(mockValidateService.Object,
@@ -48,7 +49,7 @@ public class CreateAdventureServiceTests
     public void Create_OnSuccess_InvokesPersistServiceExactlyOnce()
     {
         //Arrange
-        var mockValidateService = new Mock<IValidateService>();
+        var mockValidateService = new Mock<IValidateAdventureService>();
         var mockPersistAdventureService = new Mock<IPersistAdventureService>();
 
         var createAdventureService = new CreateAdventureService(mockValidateService.Object,
@@ -68,7 +69,7 @@ public class CreateAdventureServiceTests
     public void Create_OnValidationFailure_ReturnsFailureReason()
     {
         //Arrange
-        var mockValidateService = new Mock<IValidateService>();
+        var mockValidateService = new Mock<IValidateAdventureService>();
         var mockPersistAdventureService = new Mock<IPersistAdventureService>();
 
         var createAdventureService = new CreateAdventureService(mockValidateService.Object,
