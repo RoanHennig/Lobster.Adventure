@@ -24,7 +24,7 @@ public class PersistAdventureService : IPersistAdventureService
         }
         catch (AdventureExistsException)
         {
-            return FailuresMessages.AdventureAlreadyExists;
+            return AdventureFailureMessages.AdventureAlreadyExists;
         }
     }
 }

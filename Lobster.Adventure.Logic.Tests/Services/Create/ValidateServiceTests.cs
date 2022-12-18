@@ -33,7 +33,7 @@ public class ValidateServiceTests
         var result = validateService.Validate(request);
 
         //Assert
-        result.Should().Be(FailuresMessages.NullAdventure);
+        result.Should().Be(AdventureFailureMessages.NullAdventure);
     }
 
     [Fact()]
@@ -50,7 +50,24 @@ public class ValidateServiceTests
         var result = validateService.Validate(request);
 
         //Assert
-        result.Should().Be(FailuresMessages.NullOrEmptyAdventureName);
+        result.Should().Be(AdventureFailureMessages.NullOrEmptyAdventureName);
+    }
+
+    [Fact()]
+    public void Validate_OnNullOrEmptyAdventureUserId_ReturnsFailureReason()
+    {
+        //Arrange
+        var validateService = new ValidateAdventureService();
+
+
+        var request = LobsterAdventureFixtures.GetEmptyAdventureUserId();
+
+        //Act
+
+        var result = validateService.Validate(request);
+
+        //Assert
+        result.Should().Be(AdventureFailureMessages.NullOrEmptyAdventureUserId);
     }
 
     [Fact()]
@@ -67,7 +84,7 @@ public class ValidateServiceTests
         var result = validateService.Validate(request);
 
         //Assert
-        result.Should().Be(FailuresMessages.NullAdventureChoice);
+        result.Should().Be(AdventureFailureMessages.NullAdventureChoice);
     }
 
     [Fact()]
@@ -84,7 +101,7 @@ public class ValidateServiceTests
         var result = validateService.Validate(request);
 
         //Assert
-        result.Should().Be(FailuresMessages.NullOrEmptyChoiceId);
+        result.Should().Be(AdventureFailureMessages.NullOrEmptyChoiceId);
     }
 
     [Fact()]
@@ -101,6 +118,6 @@ public class ValidateServiceTests
         var result = validateService.Validate(request);
 
         //Assert
-        result.Should().Be(FailuresMessages.NullOrEmptyChoicePrompt);
+        result.Should().Be(AdventureFailureMessages.NullOrEmptyChoicePrompt);
     }
 }

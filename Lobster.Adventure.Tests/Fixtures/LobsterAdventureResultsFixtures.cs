@@ -7,7 +7,7 @@ public static class LobsterAdventureResultsFixtures
         return new LobsterAdventureResult()
         {
             UserId = "123",
-            Name = "dummyName",
+            AdventureName = "dummyName",
             ChoiceResults = new List<ChoiceResult>()
         };
     }

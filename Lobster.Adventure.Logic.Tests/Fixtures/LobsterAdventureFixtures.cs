@@ -44,6 +44,16 @@ public static class LobsterAdventureFixtures
         };
     }
 
+    public static LobsterAdventure GetEmptyAdventureUserId()
+    {
+        return new LobsterAdventure()
+        {
+            UserId = "",
+            Name = "123",
+            AdventureChoice = new Choice()
+        };
+    }
+
     public static LobsterAdventure GetNullAdventureChoice()
     {
         return new LobsterAdventure()

@@ -11,9 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lobster.Adventure.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lobster.Adventure.Logic.Tests", "Lobster.Adventure.Logic.Tests\Lobster.Adventure.Logic.Tests.csproj", "{E1627ED0-C788-48D8-91C8-7265EE542F73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lobster.Adventure.DataAccess", "Lobster.Adventure.DataAccess\Lobster.Adventure.DataAccess.csproj", "{A2DC764E-E2A8-48CB-B233-7FBDE5FC1A4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lobster.Adventure.DataAccess", "Lobster.Adventure.DataAccess\Lobster.Adventure.DataAccess.csproj", "{A2DC764E-E2A8-48CB-B233-7FBDE5FC1A4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lobster.Adventure.DataAccess.Tests", "Lobster.Adventure.DataAccess.Tests\Lobster.Adventure.DataAccess.Tests.csproj", "{A4D061A3-CB51-47E8-B6E1-8666CCDCFD3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lobster.Adventure.DataAccess.Tests", "Lobster.Adventure.DataAccess.Tests\Lobster.Adventure.DataAccess.Tests.csproj", "{A4D061A3-CB51-47E8-B6E1-8666CCDCFD3F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B6F361AB-C513-4BFF-BFFC-E2EE42AF07C0}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

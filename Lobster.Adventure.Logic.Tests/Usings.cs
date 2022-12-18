@@ -14,3 +14,5 @@ global using Lobster.Adventure.Logic.Interfaces.Mapping;
 global using System.Text.Json;
 global using Lobster.Adventure.Logic.Services.Create;
 global using Lobster.Adventure.Logic.Interfaces.Services.Save;
+global using System.ComponentModel.DataAnnotations;
+global using Lobster.Adventure.Logic.Tests.Helpers;

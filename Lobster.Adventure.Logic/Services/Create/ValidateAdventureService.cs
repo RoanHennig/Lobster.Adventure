@@ -5,13 +5,16 @@ public class ValidateAdventureService : IValidateAdventureService
     public string Validate(LobsterAdventure adventure)
     {
         if(adventure is null)
-            return FailuresMessages.NullAdventure;
+            return AdventureFailureMessages.NullAdventure;
 
         if (string.IsNullOrEmpty(adventure.Name))
-            return FailuresMessages.NullOrEmptyAdventureName;
+            return AdventureFailureMessages.NullOrEmptyAdventureName;
+
+        if (string.IsNullOrEmpty(adventure.UserId))
+            return AdventureFailureMessages.NullOrEmptyAdventureUserId;
 
         if (adventure.AdventureChoice is null)
-            return FailuresMessages.NullAdventureChoice;
+            return AdventureFailureMessages.NullAdventureChoice;
 
         return ValidateChoices(adventure.AdventureChoice);
     }
@@ -19,10 +22,10 @@ public class ValidateAdventureService : IValidateAdventureService
     private string ValidateChoices(Choice choice)
     {
         if(string.IsNullOrEmpty(choice.Id))
-            return FailuresMessages.NullOrEmptyChoiceId;
+            return AdventureFailureMessages.NullOrEmptyChoiceId;
 
         if (string.IsNullOrEmpty(choice.Prompt))
-            return FailuresMessages.NullOrEmptyChoicePrompt;
+            return AdventureFailureMessages.NullOrEmptyChoicePrompt;
 
         if(choice.Choices is not null)
         {

@@ -2,8 +2,14 @@
 
 public class LobsterAdventureResult
 {
+    [Required]
     public string UserId { get; init; }
-    public string Name { get; init; }
-    public string AdventureTakenDate { get; set; }
+
+    [Required]
+    public string AdventureName { get; init; }
+
+    public DateTime AdventureTakenDate { get; set; }
+
+    [Required]
     public List<ChoiceResult> ChoiceResults { get; init; }
 }
