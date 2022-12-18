@@ -12,3 +12,5 @@ global using Lobster.Adventure.Logic.Interfaces.Services.Save;
 global using Lobster.Adventure.Logic.Interfaces.Services.Create;
 global using Lobster.Adventure.Logic.Interfaces.Services.Save;
 global using Lobster.Adventure.Logic.Interfaces.Services.Read;
+global using Lobster.Adventure.Logic.Interfaces.Services.Get;
+

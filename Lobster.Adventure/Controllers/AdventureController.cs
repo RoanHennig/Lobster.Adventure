@@ -39,7 +39,7 @@ public class AdventureController : ControllerBase
         }
     }
 
-    [HttpGet(Name = "CreateAdventure")]
+    [HttpGet(Name = "GetAdventure")]
     public async Task<IActionResult> Get(string userId, string adventureName)
     {
         try

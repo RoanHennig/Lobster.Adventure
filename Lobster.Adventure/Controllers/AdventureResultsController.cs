@@ -6,12 +6,15 @@ public class AdventureResultsController : ControllerBase
 {
     private readonly ILogger<AdventureResultsController> _logger;
     private readonly ISaveAdventureResultsService _saveAdventureResultsService;
+    private readonly IGetAdventureResultService _getAdventureResultService;
 
     public AdventureResultsController(ILogger<AdventureResultsController> logger,
-                               ISaveAdventureResultsService saveAdventureResultsService)
+                               ISaveAdventureResultsService saveAdventureResultsService,
+                               IGetAdventureResultService getAdventureResultService)
     {
         _logger = logger;
         _saveAdventureResultsService = saveAdventureResultsService;
+        _getAdventureResultService = getAdventureResultService;
     }
 
     [HttpPost(Name = "SaveAdventureResults")]
@@ -34,6 +37,23 @@ public class AdventureResultsController : ControllerBase
         catch (Exception ex)
         {
             return Problem(ex.Message);
+        }
+    }
+
+    [HttpGet(Name = "GetAdventureResult")]
+    public async Task<IActionResult> Get(string userId, string adventureName, string adventureDateTaken)
+    {
+        try
+        {
+            _logger.LogInformation($"Received get request {userId} - {adventureName} - {adventureDateTaken}");
+
+            var adventureResult = _getAdventureResultService.Get(userId, adventureName, adventureDateTaken);
+
+            return Ok(adventureResult);
+        }
+        catch (Exception ex)
+        {
+            return Problem($"Could not retrieve adventure result - {ex.Message}");
         }
     }
 }

@@ -192,4 +192,30 @@ public class AdventureControllerTests
         //Assert
         result.StatusCode.Should().Be(500);
     }
+
+    [Fact()]
+    public async Task Get_OnTechnicalFailure_ReturnsProblem()
+    {
+        //Arrange
+        var mockLogger = new Mock<ILogger<AdventureController>>();
+        var mockCreateAdventureService = new Mock<ICreateAdventureService>();
+        var mockReadAdventureService = new Mock<IGetAdventureService>();
+
+        var controller = new AdventureController(mockLogger.Object,
+                                                 mockCreateAdventureService.Object,
+                                                 mockReadAdventureService.Object);
+
+        var request = LobsterAdventureFixtures.GetAdventure();
+
+        mockReadAdventureService.Setup(service => service.Get(request.UserId, request.Name)).Throws(new Exception("dummy"));
+
+        //Act
+
+        var result = (ObjectResult)await controller.Get(request.UserId, request.Name);
+
+        //Assert
+        result.Value.Should().BeOfType<ProblemDetails>();
+        var problem = (ProblemDetails)result.Value;
+        problem.Detail.Should().Be($"Could not retrieve adventure - dummy");
+    }
 }
