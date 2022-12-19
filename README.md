@@ -16,7 +16,7 @@ This is a simple adventure tree api used for persisting and retrieving adventure
 
 ### Running the application
 
-* run the below commands
+* run the below commands within the root directory of the solution
 ```
 docker-compose build
 docker-compose up
