@@ -132,6 +132,9 @@ public class AdventureResultsControllerTests
                                                         mockGetAdventureResultService.Object);
 
         var request = LobsterAdventureResultsFixtures.GetAdventureResult();
+        mockGetAdventureResultService.Setup(service => service.Get(request.UserId,
+                                                          request.AdventureName,
+                                                          request.AdventureTakenDate.ToString())).Returns(request);
 
         //Act
 
@@ -224,5 +227,34 @@ public class AdventureResultsControllerTests
         result.Value.Should().BeOfType<ProblemDetails>();
         var problem = (ProblemDetails)result.Value;
         problem.Detail.Should().Be($"Could not retrieve adventure result - dummy");
+    }
+
+    [Fact()]
+    public async Task Get_OnNullAdventureResult_ReturnsProblem()
+    {
+        //Arrange
+        var mockLogger = new Mock<ILogger<AdventureResultsController>>();
+        var mockSaveAdventureResultsService = new Mock<ISaveAdventureResultsService>();
+        var mockGetAdventureResultService = new Mock<IGetAdventureResultService>();
+
+        var controller = new AdventureResultsController(mockLogger.Object,
+                                                        mockSaveAdventureResultsService.Object,
+                                                        mockGetAdventureResultService.Object);
+
+        var request = LobsterAdventureResultsFixtures.GetAdventureResult();
+        mockGetAdventureResultService.Setup(service => service.Get(request.UserId,
+                                                          request.AdventureName,
+                                                          request.AdventureTakenDate.ToString())).Returns(LobsterAdventureResultsFixtures.GetNullAdventureResult());
+
+        //Act
+
+        var result = (ObjectResult)await controller.Get(request.UserId,
+                                                          request.AdventureName,
+                                                          request.AdventureTakenDate.ToString());
+
+        //Assert
+        result.Value.Should().BeOfType<ProblemDetails>();
+        var problem = (ProblemDetails)result.Value;
+        problem.Detail.Should().Be($"Could not retrieve adventure result - result not found.");
     }
 }

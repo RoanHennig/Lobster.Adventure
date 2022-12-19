@@ -2,6 +2,6 @@
 
 public interface IMapLobsterAdventure
 {
-    LobsterAdventureEntity Map(LobsterAdventure adventure);
-    LobsterAdventure Map(LobsterAdventureEntity adventureEntity);
+    ILobsterAdventureEntity Map(LobsterAdventure adventure);
+    LobsterAdventure Map(ILobsterAdventureEntity adventureEntity);
 }

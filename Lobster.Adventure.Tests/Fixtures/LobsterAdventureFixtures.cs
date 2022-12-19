@@ -11,4 +11,9 @@ public static class LobsterAdventureFixtures
             AdventureChoice = new Choice()
         };
     }
+
+    public static LobsterAdventure GetNullAdventure()
+    {
+        return null;
+    }
 }

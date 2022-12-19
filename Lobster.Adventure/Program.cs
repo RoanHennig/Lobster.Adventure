@@ -8,10 +8,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging();
 
-MongoClient dbClient = new MongoClient(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"));
+var connectionString = $"mongodb://{Environment.GetEnvironmentVariable("MONGO_INITDB_ROOT_USERNAME")}:{Environment.GetEnvironmentVariable("MONGO_INITDB_ROOT_PASSWORD")}@{Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")}/{Environment.GetEnvironmentVariable("DB_NAME")}?authSource=admin";
+
+MongoClient dbClient = new MongoClient(connectionString);
 var database = dbClient.GetDatabase(Environment.GetEnvironmentVariable("DB_NAME"));
-var adventureCollection = database.GetCollection<LobsterAdventureEntity>(Environment.GetEnvironmentVariable("TABLE_ADVENTURE_NAME"));
-var adventureResultCollection = database.GetCollection<LobsterAdventureResultEntity>(Environment.GetEnvironmentVariable("TABLE_ADVENTURE_RESULT_NAME"));
+var adventureCollection = database.GetCollection<LobsterAdventureMongoDbEntity>(Environment.GetEnvironmentVariable("TABLE_ADVENTURE_NAME"));
+var adventureResultCollection = database.GetCollection<LobsterAdventureResultMongoDbEntity>(Environment.GetEnvironmentVariable("TABLE_ADVENTURE_RESULT_NAME"));
 
 ConfigureServices.GetServices(builder.Services, adventureCollection, adventureResultCollection);
 

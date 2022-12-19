@@ -20,6 +20,9 @@ public class GetAdventureService : IGetAdventureService
 
         var entity = _adventureRespository.Read(key);
 
+        if (entity is null)
+            return null;
+
         return _mapLobsterAdventure.Map(entity);
     }
 }

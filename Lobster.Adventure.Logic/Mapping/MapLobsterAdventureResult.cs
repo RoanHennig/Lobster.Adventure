@@ -2,9 +2,9 @@
 
 public class MapLobsterAdventureResult : IMapLobsterAdventureResult
 {
-    public LobsterAdventureResultEntity Map(LobsterAdventureResult adventureResult)
+    public ILobsterAdventureResultEntity Map(LobsterAdventureResult adventureResult)
     {
-        return new LobsterAdventureResultEntity()
+        return new LobsterAdventureResultMongoDbEntity()
         {
             AdventureName = adventureResult.AdventureName,
             ChoiceResults = JsonSerializer.Serialize(adventureResult.ChoiceResults),
@@ -13,7 +13,7 @@ public class MapLobsterAdventureResult : IMapLobsterAdventureResult
         };
     }
 
-    public LobsterAdventureResult Map(LobsterAdventureResultEntity adventureResultEntity)
+    public LobsterAdventureResult Map(ILobsterAdventureResultEntity adventureResultEntity)
     {
         return new LobsterAdventureResult()
         {

@@ -16,7 +16,8 @@ public class GetAdventureResultServiceTests
 
 
         var request = LobsterAdventureResultsFixtures.GetAdventureResult();
-        mockMapLobsterAdventureResult.Setup(service => service.Map(It.IsAny<LobsterAdventureResultEntity>())).Returns(request);
+        mockMapLobsterAdventureResult.Setup(service => service.Map(It.IsAny<LobsterAdventureResultMongoDbEntity>())).Returns(request);
+        mockAdventureResultsRespository.Setup(service => service.Read(It.IsAny<LobsterAdventureResultKey>())).Returns(LobsterAdventureResultEntityFixtures.GetEntity());
 
         //Act
 
@@ -39,14 +40,15 @@ public class GetAdventureResultServiceTests
                                                                 mockCreateLobsterAdventureResultKeyService.Object);
 
         var request = LobsterAdventureResultsFixtures.GetAdventureResult();
-        mockMapLobsterAdventureResult.Setup(service => service.Map(It.IsAny<LobsterAdventureResultEntity>())).Returns(request);
+        mockMapLobsterAdventureResult.Setup(service => service.Map(It.IsAny<LobsterAdventureResultMongoDbEntity>())).Returns(request);
+        mockAdventureResultsRespository.Setup(service => service.Read(It.IsAny<LobsterAdventureResultKey>())).Returns(LobsterAdventureResultEntityFixtures.GetEntity());
 
         //Act
 
         var result = getAdventureService.Get(request.UserId, request.AdventureName, request.AdventureTakenDate.ToString());
 
         //Assert
-        mockMapLobsterAdventureResult.Verify(service => service.Map(It.IsAny<LobsterAdventureResultEntity>()), Times.Once());
+        mockMapLobsterAdventureResult.Verify(service => service.Map(It.IsAny<LobsterAdventureResultMongoDbEntity>()), Times.Once());
     }
 
     [Fact()]
@@ -63,7 +65,7 @@ public class GetAdventureResultServiceTests
 
 
         var request = LobsterAdventureResultsFixtures.GetAdventureResult();
-        mockMapLobsterAdventureResult.Setup(service => service.Map(It.IsAny<LobsterAdventureResultEntity>())).Returns(request);
+        mockMapLobsterAdventureResult.Setup(service => service.Map(It.IsAny<LobsterAdventureResultMongoDbEntity>())).Returns(request);
 
 
         //Act
@@ -87,7 +89,7 @@ public class GetAdventureResultServiceTests
                                                                 mockCreateLobsterAdventureResultKeyService.Object);
 
         var request = LobsterAdventureResultsFixtures.GetAdventureResult();
-        mockMapLobsterAdventureResult.Setup(service => service.Map(It.IsAny<LobsterAdventureResultEntity>())).Returns(request);
+        mockMapLobsterAdventureResult.Setup(service => service.Map(It.IsAny<LobsterAdventureResultMongoDbEntity>())).Returns(request);
 
         //Act
 
@@ -98,5 +100,28 @@ public class GetAdventureResultServiceTests
                                                                             request.UserId,
                                                                             request.AdventureName,
                                                                             request.AdventureTakenDate.ToString()), Times.Once());
+    }
+
+    [Fact()]
+    public void Get_OnNullRead_ReturnsNull()
+    {
+        var mockMapLobsterAdventureResult = new Mock<IMapLobsterAdventureResult>();
+        var mockCreateLobsterAdventureResultKeyService = new Mock<ICreateLobsterAdventureResultKeyService>();
+        var mockAdventureResultsRespository = new Mock<IAdventureResultsRespository>();
+
+        var getAdventureService = new GetAdventureResultService(mockAdventureResultsRespository.Object,
+                                                                mockMapLobsterAdventureResult.Object,
+                                                                mockCreateLobsterAdventureResultKeyService.Object);
+
+
+        var request = LobsterAdventureResultsFixtures.GetAdventureResult();
+        mockAdventureResultsRespository.Setup(service => service.Read(It.IsAny<LobsterAdventureResultKey>())).Returns(LobsterAdventureResultEntityFixtures.GetNullEntity());
+
+        //Act
+
+        var result = getAdventureService.Get(request.UserId, request.AdventureName, request.AdventureTakenDate.ToString());
+
+        //Assert
+        result.Should().BeNull();
     }
 }

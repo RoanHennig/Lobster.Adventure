@@ -7,7 +7,7 @@ public class AdventureResultsMongoDbRespositoryTests
     public void Create_OnSuccess_InvokesCollectionInsertExactlyOnce()
     {
         //Arrange
-        var mockadventureResultCollection = new Mock<IMongoCollection<LobsterAdventureResultEntity>>();
+        var mockadventureResultCollection = new Mock<IMongoCollection<LobsterAdventureResultMongoDbEntity>>();
 
         var adventureRespository = new AdventureResultsMongoDbRespository(mockadventureResultCollection.Object);
 

@@ -16,7 +16,8 @@ public class GetAdventureServiceTests
 
 
         var request = LobsterAdventureFixtures.GetAdventure();
-        mockMapLobsterAdventure.Setup(service => service.Map(It.IsAny<LobsterAdventureEntity>())).Returns(request);
+        mockMapLobsterAdventure.Setup(service => service.Map(It.IsAny<LobsterAdventureMongoDbEntity>())).Returns(request);
+        mockAdventureRespository.Setup(service => service.Read(It.IsAny<LobsterAdventureKey>())).Returns(LobsterAdventureEntityFixtures.GetEntity());
 
         //Act
 
@@ -40,14 +41,14 @@ public class GetAdventureServiceTests
 
 
         var request = LobsterAdventureFixtures.GetAdventure();
-        mockAdventureRespository.Setup(service => service.Read(It.IsAny<LobsterAdventureKey>())).Returns(new LobsterAdventureEntity());
+        mockAdventureRespository.Setup(service => service.Read(It.IsAny<LobsterAdventureKey>())).Returns(new LobsterAdventureMongoDbEntity());
 
         //Act
 
         var result = getAdventureService.Get(request.UserId, request.Name);
 
         //Assert
-        mockMapLobsterAdventure.Verify(service => service.Map(It.IsAny<LobsterAdventureEntity>()), Times.Once());
+        mockMapLobsterAdventure.Verify(service => service.Map(It.IsAny<LobsterAdventureMongoDbEntity>()), Times.Once());
     }
 
     [Fact()]
@@ -64,7 +65,7 @@ public class GetAdventureServiceTests
 
 
         var request = LobsterAdventureFixtures.GetAdventure();
-        mockAdventureRespository.Setup(service => service.Read(It.IsAny<LobsterAdventureKey>())).Returns(new LobsterAdventureEntity());
+        mockAdventureRespository.Setup(service => service.Read(It.IsAny<LobsterAdventureKey>())).Returns(new LobsterAdventureMongoDbEntity());
 
         //Act
 
@@ -88,7 +89,7 @@ public class GetAdventureServiceTests
 
 
         var request = LobsterAdventureFixtures.GetAdventure();
-        mockAdventureRespository.Setup(service => service.Read(It.IsAny<LobsterAdventureKey>())).Returns(new LobsterAdventureEntity());
+        mockAdventureRespository.Setup(service => service.Read(It.IsAny<LobsterAdventureKey>())).Returns(new LobsterAdventureMongoDbEntity());
 
         //Act
 
@@ -96,5 +97,29 @@ public class GetAdventureServiceTests
 
         //Assert
         mockCreateLobsterAdventureKeyService.Verify(service => service.Create(request.UserId, request.Name), Times.Once());
+    }
+
+    [Fact()]
+    public void Get_OnNullRead_ReturnsNull()
+    {
+        //Arrange
+        var mockMapLobsterAdventure = new Mock<IMapLobsterAdventure>();
+        var mockCreateLobsterAdventureKeyService = new Mock<ICreateLobsterAdventureKeyService>();
+        var mockAdventureRespository = new Mock<IAdventureRespository>();
+
+        var getAdventureService = new GetAdventureService(mockAdventureRespository.Object,
+                                                              mockMapLobsterAdventure.Object,
+                                                              mockCreateLobsterAdventureKeyService.Object);
+
+
+        var request = LobsterAdventureFixtures.GetAdventure();
+        mockAdventureRespository.Setup(service => service.Read(It.IsAny<LobsterAdventureKey>())).Returns(LobsterAdventureEntityFixtures.GetNullEntity());
+
+        //Act
+
+        var result = getAdventureService.Get(request.UserId, request.Name);
+
+        //Assert
+        result.Should().BeNull();
     }
 }

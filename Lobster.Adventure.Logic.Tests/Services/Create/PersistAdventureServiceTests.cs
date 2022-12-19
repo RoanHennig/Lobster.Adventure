@@ -56,7 +56,7 @@ public class PersistAdventureServiceTests
 
 
         var request = LobsterAdventureFixtures.GetAdventure();
-        mockAdventureRespository.Setup(service => service.Create(It.IsAny<LobsterAdventureEntity>())).Throws(new AdventureExistsException());
+        mockAdventureRespository.Setup(service => service.Create(It.IsAny<LobsterAdventureMongoDbEntity>())).Throws(new AdventureExistsException());
 
         //Act
 
@@ -84,6 +84,6 @@ public class PersistAdventureServiceTests
         persistAdventureService.Persist(request);
 
         //Assert
-        mockAdventureRespository.Verify(service => service.Create(It.IsAny<LobsterAdventureEntity>()), Times.Once());
+        mockAdventureRespository.Verify(service => service.Create(It.IsAny<LobsterAdventureMongoDbEntity>()), Times.Once());
     }
 }

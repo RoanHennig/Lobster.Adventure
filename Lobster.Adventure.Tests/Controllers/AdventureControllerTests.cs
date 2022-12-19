@@ -136,6 +136,7 @@ public class AdventureControllerTests
                                                  mockReadAdventureService.Object);
 
         var request = LobsterAdventureFixtures.GetAdventure();
+        mockReadAdventureService.Setup(service => service.Get(request.UserId, request.Name)).Returns(request);
 
         //Act
 
@@ -217,5 +218,31 @@ public class AdventureControllerTests
         result.Value.Should().BeOfType<ProblemDetails>();
         var problem = (ProblemDetails)result.Value;
         problem.Detail.Should().Be($"Could not retrieve adventure - dummy");
+    }
+
+    [Fact()]
+    public async Task Get_OnNullAdventure_ReturnsProblem()
+    {
+        //Arrange
+        var mockLogger = new Mock<ILogger<AdventureController>>();
+        var mockCreateAdventureService = new Mock<ICreateAdventureService>();
+        var mockReadAdventureService = new Mock<IGetAdventureService>();
+
+        var controller = new AdventureController(mockLogger.Object,
+                                                 mockCreateAdventureService.Object,
+                                                 mockReadAdventureService.Object);
+
+        var request = LobsterAdventureFixtures.GetAdventure();
+
+        mockReadAdventureService.Setup(service => service.Get(request.UserId, request.Name)).Returns(LobsterAdventureFixtures.GetNullAdventure());
+
+        //Act
+
+        var result = (ObjectResult)await controller.Get(request.UserId, request.Name);
+
+        //Assert
+        result.Value.Should().BeOfType<ProblemDetails>();
+        var problem = (ProblemDetails)result.Value;
+        problem.Detail.Should().Be($"Could not retrieve adventure - adventure not found.");
     }
 }

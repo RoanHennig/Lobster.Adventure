@@ -2,6 +2,6 @@
 
 public interface IAdventureResultsRespository
 {
-    void Create(LobsterAdventureResultEntity entity);
-    LobsterAdventureResultEntity Read(LobsterAdventureResultKey key);
+    void Create(ILobsterAdventureResultEntity entity);
+    ILobsterAdventureResultEntity Read(LobsterAdventureResultKey key);
 }

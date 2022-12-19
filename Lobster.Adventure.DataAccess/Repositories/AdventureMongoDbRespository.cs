@@ -2,22 +2,23 @@
 
 public class AdventureMongoDbRespository : IAdventureRespository
 {
-    private IMongoCollection<LobsterAdventureEntity> _adventureCollection;
+    private IMongoCollection<LobsterAdventureMongoDbEntity> _adventureCollection;
 
-    public AdventureMongoDbRespository(IMongoCollection<LobsterAdventureEntity> adventureCollection)
+    public AdventureMongoDbRespository(IMongoCollection<LobsterAdventureMongoDbEntity> adventureCollection)
     {
         _adventureCollection = adventureCollection;
     }
 
-    public void Create(LobsterAdventureEntity entity)
+    public void Create(ILobsterAdventureEntity entity)
     {
-        _adventureCollection.InsertOne(entity, null, CancellationToken.None);
+        var mongoDbEntity = entity as LobsterAdventureMongoDbEntity;
+        _adventureCollection.InsertOne(mongoDbEntity, null, CancellationToken.None);
     }
 
-    public LobsterAdventureEntity Read(LobsterAdventureKey key)
+    public ILobsterAdventureEntity Read(LobsterAdventureKey key)
     {
-        var filter = Builders<LobsterAdventureEntity>.Filter.Eq("userId", key.UserId) &
-                     Builders<LobsterAdventureEntity>.Filter.Eq("name", key.Name);
+        var filter = Builders<LobsterAdventureMongoDbEntity>.Filter.Eq("userId", key.UserId) &
+                     Builders<LobsterAdventureMongoDbEntity>.Filter.Eq("name", key.Name);
 
         var result = _adventureCollection.FindSync(filter, null, CancellationToken.None)
                                                   .FirstOrDefault();

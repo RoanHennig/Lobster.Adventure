@@ -4,6 +4,6 @@ namespace Lobster.Adventure.DataAccess.Interfaces.Repositories;
 
 public interface IAdventureRespository
 {
-    void Create(LobsterAdventureEntity entity);
-    LobsterAdventureEntity Read(LobsterAdventureKey key);
+    void Create(ILobsterAdventureEntity entity);
+    ILobsterAdventureEntity Read(LobsterAdventureKey key);
 }

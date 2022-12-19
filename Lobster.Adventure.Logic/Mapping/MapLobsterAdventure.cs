@@ -2,9 +2,9 @@
 
 public class MapLobsterAdventure : IMapLobsterAdventure
 {
-    public LobsterAdventureEntity Map(LobsterAdventure adventure)
+    public ILobsterAdventureEntity Map(LobsterAdventure adventure)
     {
-        return new LobsterAdventureEntity()
+        return new LobsterAdventureMongoDbEntity()
         {
             UserId = adventure.UserId,
             Name = adventure.Name,
@@ -12,7 +12,7 @@ public class MapLobsterAdventure : IMapLobsterAdventure
         };
     }
 
-    public LobsterAdventure Map(LobsterAdventureEntity adventureEntity)
+    public LobsterAdventure Map(ILobsterAdventureEntity adventureEntity)
     {
         return new LobsterAdventure()
         {

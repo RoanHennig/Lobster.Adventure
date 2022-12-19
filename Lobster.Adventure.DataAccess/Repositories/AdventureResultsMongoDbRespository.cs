@@ -2,23 +2,25 @@
 
 public class AdventureResultsMongoDbRespository : IAdventureResultsRespository
 {
-    private IMongoCollection<LobsterAdventureResultEntity> _adventureResultCollection;
+    private IMongoCollection<LobsterAdventureResultMongoDbEntity> _adventureResultCollection;
 
-    public AdventureResultsMongoDbRespository(IMongoCollection<LobsterAdventureResultEntity> adventureResultCollection)
+    public AdventureResultsMongoDbRespository(IMongoCollection<LobsterAdventureResultMongoDbEntity> adventureResultCollection)
     {
         _adventureResultCollection = adventureResultCollection;
     }
 
-    public void Create(LobsterAdventureResultEntity entity)
+    public void Create(ILobsterAdventureResultEntity entity)
     {
-        _adventureResultCollection.InsertOne(entity, null, CancellationToken.None);
+        var mongoDbEntity = entity as LobsterAdventureResultMongoDbEntity;
+
+        _adventureResultCollection.InsertOne(mongoDbEntity, null, CancellationToken.None);
     }
 
-    public LobsterAdventureResultEntity Read(LobsterAdventureResultKey key)
+    public ILobsterAdventureResultEntity Read(LobsterAdventureResultKey key)
     {
-        var filter = Builders<LobsterAdventureResultEntity>.Filter.Eq("userId", key.UserId) &
-                     Builders<LobsterAdventureResultEntity>.Filter.Eq("adventureName", key.AdventureName) &
-                     Builders<LobsterAdventureResultEntity>.Filter.Eq("adventureTakenDate", key.AdventureTakenDate);
+        var filter = Builders<LobsterAdventureResultMongoDbEntity>.Filter.Eq("userId", key.UserId) &
+                     Builders<LobsterAdventureResultMongoDbEntity>.Filter.Eq("adventureName", key.AdventureName) &
+                     Builders<LobsterAdventureResultMongoDbEntity>.Filter.Eq("adventureTakenDate", key.AdventureTakenDate);
 
         var result = _adventureResultCollection.FindSync(filter, null, CancellationToken.None).FirstOrDefault();
 

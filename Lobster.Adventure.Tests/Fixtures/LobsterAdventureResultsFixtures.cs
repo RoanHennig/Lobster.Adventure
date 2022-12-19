@@ -11,4 +11,9 @@ public static class LobsterAdventureResultsFixtures
             ChoiceResults = new List<ChoiceResult>()
         };
     }
+
+    public static LobsterAdventureResult GetNullAdventureResult()
+    {
+        return null;
+    }
 }

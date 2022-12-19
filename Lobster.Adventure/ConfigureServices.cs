@@ -6,8 +6,8 @@ namespace Lobster.Adventure;
 public static class ConfigureServices
 {
     public static IServiceCollection GetServices(IServiceCollection services,
-                                                 IMongoCollection<LobsterAdventureEntity> adventureCollection,
-                                                 IMongoCollection<LobsterAdventureResultEntity> adventureResultCollection)
+                                                 IMongoCollection<LobsterAdventureMongoDbEntity> adventureCollection,
+                                                 IMongoCollection<LobsterAdventureResultMongoDbEntity> adventureResultCollection)
     {
         services
             .AddSingleton<IAdventureRespository>(new AdventureMongoDbRespository(adventureCollection))

@@ -1,7 +1,9 @@
 ﻿namespace Lobster.Adventure.DataAccess.Entities;
 
-public class LobsterAdventureResultEntity
+public class LobsterAdventureResultMongoDbEntity : ILobsterAdventureResultEntity
 {
+    [BsonId]
+    public ObjectId Id { get; init; }
     [BsonElement("userId")]
     public string UserId { get; init; }
     [BsonElement("adventureName")]

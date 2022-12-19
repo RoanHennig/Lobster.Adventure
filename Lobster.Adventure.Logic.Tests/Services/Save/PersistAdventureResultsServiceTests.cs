@@ -42,6 +42,6 @@ public class PersistAdventureResultsServiceTests
         persistAdventureResultService.Persist(request);
 
         //Assert
-        mockAdventureResultsRespository.Verify(service => service.Create(It.IsAny<LobsterAdventureResultEntity>()), Times.Once());
+        mockAdventureResultsRespository.Verify(service => service.Create(It.IsAny<LobsterAdventureResultMongoDbEntity>()), Times.Once());
     }
 }

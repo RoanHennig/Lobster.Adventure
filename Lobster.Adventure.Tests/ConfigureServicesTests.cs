@@ -7,8 +7,8 @@ public class ConfigureServicesTests
     {
         //Arrange
         var request = new ServiceCollection();
-        var mockadventureCollection = new Mock<IMongoCollection<LobsterAdventureEntity>>();
-        var mockadventureResultCollection = new Mock<IMongoCollection<LobsterAdventureResultEntity>>();
+        var mockadventureCollection = new Mock<IMongoCollection<LobsterAdventureMongoDbEntity>>();
+        var mockadventureResultCollection = new Mock<IMongoCollection<LobsterAdventureResultMongoDbEntity>>();
 
         //Act
 

@@ -48,6 +48,9 @@ public class AdventureController : ControllerBase
 
             var adventure = _getAdventureService.Get(userId, adventureName);
 
+            if (adventure is null)
+                return Problem($"Could not retrieve adventure - adventure not found.");
+
             return Ok(adventure);
         }
         catch (Exception ex)

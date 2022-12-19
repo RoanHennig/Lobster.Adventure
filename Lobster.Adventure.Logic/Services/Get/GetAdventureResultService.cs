@@ -21,6 +21,9 @@ public class GetAdventureResultService : IGetAdventureResultService
 
         var entity = _adventureResultsRespository.Read(key);
 
+        if (entity is null)
+            return null;
+
         return _mapLobsterAdventureResult.Map(entity);
     }
 }
