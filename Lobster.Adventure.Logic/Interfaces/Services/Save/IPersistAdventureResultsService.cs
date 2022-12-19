@@ -2,5 +2,5 @@
 
 public interface IPersistAdventureResultsService
 {
-    void Persist(LobsterAdventureResult adventureResult);
+    string Persist(LobsterAdventureResult adventureResult);
 }

@@ -5,3 +5,4 @@ global using Lobster.Adventure.DataAccess.Interfaces.Repositories;
 global using MongoDB.Driver;
 global using MongoDB.Bson;
 global using Lobster.Adventure.DataAccess.Interfaces.Entities;
+global using Lobster.Adventure.DataAccess.Exceptions;

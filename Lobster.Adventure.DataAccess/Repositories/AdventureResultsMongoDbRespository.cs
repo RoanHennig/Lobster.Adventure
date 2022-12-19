@@ -11,9 +11,21 @@ public class AdventureResultsMongoDbRespository : IAdventureResultsRespository
 
     public void Create(ILobsterAdventureResultEntity entity)
     {
-        var mongoDbEntity = entity as LobsterAdventureResultMongoDbEntity;
+        try
+        {
+            var mongoDbEntity = entity as LobsterAdventureResultMongoDbEntity;
 
-        _adventureResultCollection.InsertOne(mongoDbEntity, null, CancellationToken.None);
+            _adventureResultCollection.InsertOne(mongoDbEntity, null, CancellationToken.None);
+
+        }
+        catch (MongoWriteException ex)
+        {
+            //Code 11000 refers to a duplicate index error
+            if (ex.WriteError.Code == 11000)
+            {
+                throw new AdventureResultExistsException("adventure result already exists.", ex);
+            }
+        }
     }
 
     public ILobsterAdventureResultEntity Read(LobsterAdventureResultKey key)

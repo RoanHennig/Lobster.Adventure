@@ -12,10 +12,19 @@ public class PersistAdventureResultsService : IPersistAdventureResultsService
         _mapLobsterAdventureResult = mapLobsterAdventureResult;
     }
 
-    public void Persist(LobsterAdventureResult adventureResult)
+    public string Persist(LobsterAdventureResult adventureResult)
     {
         var entity = _mapLobsterAdventureResult.Map(adventureResult);
 
-        _adventureResultsRespository.Create(entity);
+        try
+        {
+            _adventureResultsRespository.Create(entity);
+
+            return string.Empty;
+        }
+        catch (AdventureResultExistsException)
+        {
+            return AdventureResultFailureMessages.AdventureResultAlreadyExists;
+        }
     }
 }

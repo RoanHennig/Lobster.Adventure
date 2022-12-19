@@ -1,10 +1,8 @@
 global using Xunit;
 global using Lobster.Adventure.DataAccess.Entities;
-global using MongoDB.Bson.Serialization.Attributes;
-global using Lobster.Adventure.DataAccess.Interfaces.Repositories;
 global using Lobster.Adventure.DataAccess.Tests.Fixtures;
-global using MongoDB.Bson;
 global using MongoDB.Driver;
 global using Moq;
-global using System;
 global using Lobster.Adventure.DataAccess.Keys;
+global using FluentAssertions;
+global using Lobster.Adventure.DataAccess.Exceptions;

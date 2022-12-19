@@ -22,5 +22,6 @@ public static class Constants
         public static readonly string NullOrEmptyAdventureResultChoices = "Adventure result has no choices.";
         public static readonly string NullOrEmptyChoiceId = "A choice does not have an Id.";
         public static readonly string NullOrEmptyChoiceIdTaken = "A choice does not have a taken Id.";
+        public static readonly string AdventureResultAlreadyExists = "Adventure result already exists!";
     }
 }
