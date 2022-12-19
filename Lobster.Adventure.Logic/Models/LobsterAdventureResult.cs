@@ -8,6 +8,7 @@ public class LobsterAdventureResult
     [Required]
     public string AdventureName { get; init; }
 
+    [Required]
     public DateTime AdventureTakenDate { get; set; }
 
     [Required]

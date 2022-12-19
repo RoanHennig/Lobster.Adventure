@@ -137,4 +137,21 @@ public class ValidateAdventureResultsServiceTests
         //Assert
         result.Should().Be(AdventureResultFailureMessages.NullOrEmptyAdventureResultChoices);
     }
+
+    [Fact()]
+    public void Validate_OnNullAdventureTakenDate_ReturnsFailureReason()
+    {
+        //Arrange
+        var validateAdventureResultsService = new ValidateAdventureResultsService();
+
+
+        var request = LobsterAdventureResultsFixtures.GetNullAdventureTakenDateAdventureResult();
+
+        //Act
+
+        var result = validateAdventureResultsService.Validate(request);
+
+        //Assert
+        result.Should().Be(AdventureResultFailureMessages.NullOrEmptyAdventureTakenDate);
+    }
 }

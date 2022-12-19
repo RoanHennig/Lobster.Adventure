@@ -13,6 +13,9 @@ public class ValidateAdventureResultsService : IValidateAdventureResultsService
         if (string.IsNullOrEmpty(adventureResult.UserId))
             return AdventureResultFailureMessages.NullOrEmptyAdventureUserId;
 
+        if (adventureResult.AdventureTakenDate == DateTime.MinValue)
+            return AdventureResultFailureMessages.NullOrEmptyAdventureTakenDate;
+
         if (adventureResult.ChoiceResults is null || adventureResult.ChoiceResults.Count == 0)
             return AdventureResultFailureMessages.NullOrEmptyAdventureResultChoices;
 

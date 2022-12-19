@@ -20,12 +20,30 @@ public static class LobsterAdventureResultsFixtures
         };
     }
 
+    public static LobsterAdventureResult GetNullAdventureTakenDateAdventureResult()
+    {
+        return new LobsterAdventureResult()
+        {
+            UserId = "dummyUserId",
+            AdventureName = "dummyName",
+            ChoiceResults = new List<ChoiceResult>()
+            {
+                new ChoiceResult()
+                {
+                    ChoiceId = "1",
+                    ChoiceIdTaken = "2"
+                }
+            }
+        };
+    }
+
     public static LobsterAdventureResult GetNullChoiceIdTakenAdventureResult()
     {
         return new LobsterAdventureResult()
         {
             UserId = "dummyUserId",
             AdventureName = "dummyName",
+            AdventureTakenDate = DateTime.Now,
             ChoiceResults = new List<ChoiceResult>()
             {
                 new ChoiceResult()
@@ -42,6 +60,7 @@ public static class LobsterAdventureResultsFixtures
         {
             UserId = "dummyUserId",
             AdventureName = "dummyName",
+            AdventureTakenDate = DateTime.Now,
             ChoiceResults = new List<ChoiceResult>()
             {
                 new ChoiceResult()
@@ -57,6 +76,7 @@ public static class LobsterAdventureResultsFixtures
         return new LobsterAdventureResult()
         {
             UserId = "dummyUserId",
+            AdventureTakenDate = DateTime.Now,
             ChoiceResults = new List<ChoiceResult>()
             {
                 new ChoiceResult()
@@ -73,6 +93,7 @@ public static class LobsterAdventureResultsFixtures
         return new LobsterAdventureResult()
         {
             AdventureName = "dummyName",
+            AdventureTakenDate = DateTime.Now,
             ChoiceResults = new List<ChoiceResult>()
             {
                 new ChoiceResult()
@@ -89,6 +110,7 @@ public static class LobsterAdventureResultsFixtures
         return new LobsterAdventureResult()
         {
             UserId = "dummyUserId",
+            AdventureTakenDate = DateTime.Now,
             AdventureName = "dummyName"
         };
     }
@@ -98,6 +120,7 @@ public static class LobsterAdventureResultsFixtures
         return new LobsterAdventureResult()
         {
             UserId = "dummyUserId",
+            AdventureTakenDate = DateTime.Now,
             AdventureName = "dummyName",
             ChoiceResults = new List<ChoiceResult>()
         };
