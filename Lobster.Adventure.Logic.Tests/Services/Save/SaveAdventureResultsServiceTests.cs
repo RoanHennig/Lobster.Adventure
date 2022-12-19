@@ -15,6 +15,7 @@ public class SaveAdventureResultsServiceTests
 
         var request = LobsterAdventureResultsFixtures.GetAdventureResult();
 
+        mockPersistAdventureResultsService.Setup(service => service.Persist(request)).Returns(string.Empty);
         //Act
 
         var result = createAdventureService.Save(request);
@@ -83,5 +84,27 @@ public class SaveAdventureResultsServiceTests
 
         //Assert
         result.Should().NotBeNullOrEmpty();
+    }
+
+    [Fact()]
+    public void Save_OnPersistValidationFailure_ReturnsFailureReason()
+    {
+        //Arrange
+        var mockValidateAdventureResultsService = new Mock<IValidateAdventureResultsService>();
+        var mockPersistAdventureResultsService = new Mock<IPersistAdventureResultsService>();
+
+        var createAdventureService = new SaveAdventureResultsService(mockValidateAdventureResultsService.Object,
+                                                                     mockPersistAdventureResultsService.Object);
+
+        var request = LobsterAdventureResultsFixtures.GetAdventureResult();
+
+        mockPersistAdventureResultsService.Setup(service => service.Persist(request)).Returns("dummyFailure");
+
+        //Act
+
+        var result = createAdventureService.Save(request);
+
+        //Assert
+        result.Should().Be("dummyFailure");
     }
 }
