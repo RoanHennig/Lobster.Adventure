@@ -13,6 +13,7 @@ This is a simple adventure tree api used for persisting and retrieving adventure
 * Docker Engine - https://docs.docker.com/get-docker/
 * Docker Compose - https://docs.docker.com/compose/install/
 * Visual Studio - https://visualstudio.microsoft.com/downloads/
+* .NET 6 - https://dotnet.microsoft.com/en-us/download/visual-studio-sdks
 
 ### Running the application
 
