@@ -6,6 +6,8 @@ A lobster adventure game!
 
 This is a simple adventure tree api used for persisting and retrieving adventure trees, as well as the results of treversing through those adventure trees.
 
+See https://github.com/RoanHennig/Lobster.Adventure/blob/main/Adventure%20Flow%20Diagram draw.io diagram for a flow diagram.
+
 ## Getting Started
 
 ### Dependencies
