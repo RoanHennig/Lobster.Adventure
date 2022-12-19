@@ -22,24 +22,6 @@ public class ChoiceTests
     }
 
     [Fact()]
-    public void Validate_OnNullChoice_ReturnsFailureReason()
-    {
-        //Arrange
-        var choiceModel = new Choice()
-        {
-            Id = "dummyId2",
-            Prompt = "dummyPrompt2"
-        };
-
-        //Act
-
-        var result = DataAnnotationValidator.ValidateModel(choiceModel);
-
-        //Assert
-        result.Should().HaveCount(1);
-    }
-
-    [Fact()]
     public void Validate_OnNullOrEmptyChoiceId_ReturnsFailureReason()
     {
         //Arrange

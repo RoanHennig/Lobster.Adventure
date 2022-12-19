@@ -5,7 +5,11 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DB_CONNECTION_STRING": "mongodb://127.0.0.1:27017",
+        "DB_NAME": "lobster",
+        "TABLE_ADVENTURE_NAME": "adventure",
+        "TABLE_ADVENTURE_RESULT_NAME": "adventure_result"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7177;http://localhost:5177"
@@ -15,13 +19,24 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DB_CONNECTION_STRING": "mongodb://127.0.0.1:27017",
+        "DB_NAME": "lobster",
+        "TABLE_ADVENTURE_NAME": "adventure",
+        "TABLE_ADVENTURE_RESULT_NAME": "adventure_result"
       }
     },
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DB_CONNECTION_STRING": "mongodb://127.0.0.1:27017",
+        "DB_NAME": "lobster",
+        "TABLE_ADVENTURE_NAME": "adventure",
+        "TABLE_ADVENTURE_RESULT_NAME": "adventure_result"
+      },
       "publishAllPorts": true,
       "useSSL": true
     }

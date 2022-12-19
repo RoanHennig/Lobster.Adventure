@@ -86,5 +86,4 @@ public class CreateAdventureServiceTests
         //Assert
         result.Should().NotBeNullOrEmpty();
     }
-
 }
